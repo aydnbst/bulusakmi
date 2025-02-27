@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buluşalım mı?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4); /* Sabit arka plan */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px; /* Soruyu orta üste yakın konumlandır */
+        }
+        .question {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .button.yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .button.yes:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .button.no {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+        .button.no:hover {
+            background-color: #e53935;
+            transform: scale(1.1);
+        }
+        .final-message {
+            font-size: 4em;
+            color: #ff4081;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            display: none;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            animation: float 5s infinite ease-in-out;
+            z-index: 1;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(20deg);
+            }
+        }
+        .film-seridi {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            z-index: 2;
+        }
+        .film-seridi img {
+            width: 100px; /* Resim boyutunu küçülttük */
+            height: auto;
+            margin-right: 10px; /* Resimler arasındaki boşluğu azalttık */
+            animation: slide 40s linear infinite; /* Animasyon süresini 40 saniye yaptık */
+        }
+        @keyframes slide {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        @media (max-width: 600px) {
+            .question {
+                font-size: 2em;
+            }
+            .button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .final-message {
+                font-size: 3em;
+            }
+            .film-seridi img {
+                width: 80px; /* Mobilde resim boyutunu daha küçük yaptık */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question" id="question">Buluşalım mı?</div>
+        <div class="buttons" id="buttons">
+            <button class="button yes" id="yesButton">Evet</button>
+            <button class="button no" id="noButton">Hayır</button>
+        </div>
+    </div>
+
+    <!-- Final Message -->
+    <div class="final-message" id="finalMessage">Oleyyyyyy! 🎉</div>
+
+    <!-- Kalpler -->
+    <div id="heartsContainer"></div>
+
+    <!-- Film Şeridi -->
+    <div class="film-seridi" id="filmSeridi" style="display: none;">
+        <!-- Resimleri iki kez ekliyoruz -->
+        <img src="resim1.jpg" alt="Resim 1">
+        <img src="resim2.jpg" alt="Resim 2">
+        <img src="resim3.jpg" alt="Resim 3">
+        <img src="resim4.jpg" alt="Resim 4">
+        <img src="resim5.jpg" alt="Resim 5">
+        <img src="resim6.jpg" alt="Resim 6">
+        <img src="resim7.jpg" alt="Resim 7">
+        <img src="resim8.jpg" alt="Resim 8">
+        <img src="resim9.jpg" alt="Resim 9">
+        <img src="resim10.jpg" alt="Resim 10">
+        <img src="resim11.jpg" alt="Resim 11">
+        <img src="resim12.jpg" alt="Resim 12">
+        <img src="resim13.jpg" alt="Resim 13">
+        <img src="resim14.jpg" alt="Resim 14">
+        <img src="resim15.jpg" alt="Resim 15">
+        <img src="resim16.jpg" alt="Resim 16">
+        <img src="resim17.jpg" alt="Resim 17">
+        <img src="resim18.jpg" alt="Resim 18">
+        <img src="resim19.jpg" alt="Resim 19">
+        <img src="resim20.jpg" alt="Resim 20">
+        <!-- Resimleri tekrar ekliyoruz -->
+        <img src="resim1.jpg" alt="Resim 1">
+        <img src="resim2.jpg" alt="Resim 2">
+        <img src="resim3.jpg" alt="Resim 3">
+        <img src="resim4.jpg" alt="Resim 4">
+        <img src="resim5.jpg" alt="Resim 5">
+        <img src="resim6.jpg" alt="Resim 6">
+        <img src="resim7.jpg" alt="Resim 7">
+        <img src="resim8.jpg" alt="Resim 8">
+        <img src="resim9.jpg" alt="Resim 9">
+        <img src="resim10.jpg" alt="Resim 10">
+        <img src="resim11.jpg" alt="Resim 11">
+        <img src="resim12.jpg" alt="Resim 12">
+        <img src="resim13.jpg" alt="Resim 13">
+        <img src="resim14.jpg" alt="Resim 14">
+        <img src="resim15.jpg" alt="Resim 15">
+        <img src="resim16.jpg" alt="Resim 16">
+        <img src="resim17.jpg" alt="Resim 17">
+        <img src="resim18.jpg" alt="Resim 18">
+        <img src="resim19.jpg" alt="Resim 19">
+        <img src="resim20.jpg" alt="Resim 20">
+    </div>
+
+    <script>
+        const questionElement = document.getElementById('question');
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const buttonsContainer = document.getElementById('buttons');
+        const finalMessage = document.getElementById('finalMessage');
+        const heartsContainer = document.getElementById('heartsContainer');
+        const filmSeridi = document.getElementById('filmSeridi');
+
+        let noCount = 0;
+
+        // Soruların listesi
+        const questions = [
+            "Buluşalım mı?",
+            "Hadi ümmüş kırma beni, buluşalım!",
+            "Buluşuyor muyuz?",
+            "Lütfen buluşalım!",
+            "Kırma beni be artık ümmüş 🥺"
+        ];
+
+        // Kalp oluşturma fonksiyonu
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerText = '❤️';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.fontSize = `${Math.random() * 2 + 1}em`;
+                heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Final ekranını göster
+        function showFinalMessage() {
+            finalMessage.style.display = 'block';
+            buttonsContainer.style.display = 'none';
+            questionElement.style.display = 'none';
+            filmSeridi.style.display = 'flex'; // Film şeridini göster
+            createHearts();
+            // Ses efekti ekleyebilirsiniz
+            const audio = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3');
+            audio.play();
+        }
+
+        // Hayır butonunu rastgele bir konuma taşı
+        function moveNoButton() {
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const yesButtonRect = yesButton.getBoundingClientRect();
+            const noButtonRect = noButton.getBoundingClientRect();
+
+            let newX, newY;
+
+            do {
+                newX = Math.random() * (containerRect.width - noButtonRect.width);
+                newY = Math.random() * (containerRect.height - noButtonRect.height);
+            } while (
+                newX + noButtonRect.width > yesButtonRect.left &&
+                newX < yesButtonRect.right &&
+                newY + noButtonRect.height > yesButtonRect.top &&
+                newY < yesButtonRect.bottom
+            );
+
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        }
+
+        // Hayır butonuna tıklandığında
+        noButton.addEventListener('click', () => {
+            noCount++;
+            if (noCount < questions.length) {
+                questionElement.innerText = questions[noCount]; // Soruyu güncelle
+                if (noCount >= 1) { // İkinci sorudan itibaren Hayır butonunu hareket ettir
+                    moveNoButton();
+                }
+            } else {
+                // Son aşamada Hayır butonunu rastgele konumlara taşı
+                moveNoButton();
+            }
+        });
+
+        // Evet butonuna tıklandığında
+        yesButton.addEventListener('click', showFinalMessage);
+    </script>
+</body>
+</html>
